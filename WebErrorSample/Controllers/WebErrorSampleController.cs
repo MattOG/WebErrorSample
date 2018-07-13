@@ -13,19 +13,19 @@
         {
             using (var context = new WebErrorSampleContext())
             {
-                var parentsFirstChildWorking =
-                    context.Parents
-                        .Include(x => x.Children)
-                        .ThenInclude(x => x.Toy.Category)
-                        .ToList() // ToList added, execution succeeds
-                        .Select(x => new ParentFirstChildClass
-                        {
-                            Id = x.ParentEntityId,
-                            Name = x.ParentName,
-                            FirstChildName = x.Children.First().ChildName,
-                            ChildsToy = x.Children.First().Toy.ToyName,
-                            ChildsToyCategory = x.Children.First().Toy.Category.CategoryName
-                        }).ToList();
+                //var parentsFirstChildWorking =
+                //    context.Parents
+                //        .Include(x => x.Children)
+                //        .ThenInclude(x => x.Toy.Category)
+                //        .ToList() // ToList added, execution succeeds
+                //        .Select(x => new ParentFirstChildClass
+                //        {
+                //            Id = x.ParentEntityId,
+                //            Name = x.ParentName,
+                //            FirstChildName = x.Children.First().ChildName,
+                //            ChildsToy = x.Children.First().Toy.ToyName,
+                //            ChildsToyCategory = x.Children.First().Toy.Category.CategoryName
+                //        }).ToList();
                         
                 var parentsFirstChildBroken =
                     context.Parents
@@ -40,9 +40,8 @@
                             ChildsToyCategory = x.Children.First().Toy.Category.CategoryName // Breaks
                         }).ToList();
 
-                        var parentsFirstChild = parentsFirstChildBroken ?? parentsFirstChildWorking;
-
-                return Json(parentsFirstChild);
+                //return Json(parentsFirstChildWorking);
+                return Json(parentsFirstChildBroken);
             }
         }
     }
